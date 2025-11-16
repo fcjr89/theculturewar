@@ -2,10 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    
     <title>The Culture War - Choose Your Pill</title>
     <meta name="description" content="The Culture War - A gamer's perspective on society. Matrix-themed retro website. Choose the red pill or blue pill.">
     <meta name="keywords" content="gaming, culture war, matrix, red pill, blue pill, cyberpunk, retro gaming, social commentary">
+    
+    <!-- Preconnect for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.tiktok.com">
+    <link rel="preconnect" href="https://pilled.net">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -14,6 +25,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -22,6 +34,8 @@
             color: #0f0;
             overflow-x: hidden;
             position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         #matrix-canvas {
@@ -32,6 +46,7 @@
             height: 100%;
             z-index: 0;
             opacity: 0.3;
+            will-change: transform;
         }
 
         .container {
@@ -62,13 +77,14 @@
         }
 
         h1 {
-            font-size: 2.5em;
+            font-size: clamp(1.2em, 5vw, 2.5em);
             margin-bottom: 20px;
             text-shadow: 0 0 20px #0f0;
+            word-wrap: break-word;
         }
 
         .subtitle {
-            font-size: 0.8em;
+            font-size: clamp(0.5em, 2vw, 0.8em);
             color: #0f0;
             margin: 20px 0;
             line-height: 1.8;
@@ -89,19 +105,20 @@
             height: auto;
             display: block;
             filter: contrast(1.2) brightness(0.9);
+            loading: lazy;
         }
 
         .intro-box {
             background: rgba(0, 20, 0, 0.9);
             border: 3px solid #0f0;
-            padding: 30px;
+            padding: clamp(20px, 5vw, 30px);
             margin: 40px auto;
             max-width: 700px;
             box-shadow: 0 0 20px #0f0;
         }
 
         .intro-box p {
-            font-size: 0.7em;
+            font-size: clamp(0.5em, 1.5vw, 0.7em);
             line-height: 2;
             text-align: center;
         }
@@ -111,7 +128,7 @@
             max-width: 1000px;
             background: rgba(0, 20, 0, 0.9);
             border: 4px solid #0f0;
-            padding: 20px;
+            padding: clamp(10px, 3vw, 20px);
             box-shadow: 0 0 40px #0f0;
             position: relative;
         }
@@ -128,8 +145,8 @@
             left: 10px;
             background: #ff0000;
             color: #fff;
-            padding: 8px 15px;
-            font-size: 0.6em;
+            padding: clamp(5px, 1.5vw, 8px) clamp(10px, 2.5vw, 15px);
+            font-size: clamp(0.4em, 1.2vw, 0.6em);
             z-index: 10;
             border: 2px solid #fff;
             box-shadow: 0 0 20px #ff0000;
@@ -144,7 +161,7 @@
         .stream-frame iframe {
             display: block;
             width: 100%;
-            height: 95vh;
+            height: clamp(300px, 60vh, 95vh);
             border: none;
         }
 
@@ -153,13 +170,13 @@
             max-width: 780px;
             background: rgba(0, 20, 0, 0.9);
             border: 4px solid #0f0;
-            padding: 30px;
+            padding: clamp(20px, 5vw, 30px);
             box-shadow: 0 0 40px #0f0;
             text-align: center;
         }
 
         .tiktok-container h2 {
-            font-size: 1.2em;
+            font-size: clamp(0.8em, 2.5vw, 1.2em);
             margin-bottom: 30px;
             color: #0f0;
             text-shadow: 0 0 10px #0f0;
@@ -168,7 +185,7 @@
         .pill-container {
             display: flex;
             justify-content: center;
-            gap: 60px;
+            gap: clamp(20px, 5vw, 60px);
             margin: 60px 0;
             flex-wrap: wrap;
         }
@@ -176,16 +193,21 @@
         .pill {
             background: rgba(0, 20, 0, 0.8);
             border: 3px solid;
-            padding: 30px;
+            padding: clamp(20px, 4vw, 30px);
             cursor: pointer;
             transition: all 0.3s;
             position: relative;
-            min-width: 200px;
+            min-width: clamp(150px, 30vw, 200px);
             text-align: center;
+            touch-action: manipulation;
+        }
+
+        .pill:active {
+            transform: scale(0.95);
         }
 
         .pill:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .red-pill {
@@ -193,7 +215,7 @@
             color: #ff0000;
         }
 
-        .red-pill:hover {
+        .red-pill:hover, .red-pill:active {
             box-shadow: 0 0 40px #ff0000;
             background: rgba(255, 0, 0, 0.2);
         }
@@ -203,24 +225,24 @@
             color: #0088ff;
         }
 
-        .blue-pill:hover {
+        .blue-pill:hover, .blue-pill:active {
             box-shadow: 0 0 40px #0088ff;
             background: rgba(0, 136, 255, 0.2);
         }
 
         .pill h2 {
-            font-size: 1.2em;
+            font-size: clamp(0.8em, 2vw, 1.2em);
             margin-bottom: 20px;
         }
 
         .pill p {
-            font-size: 0.6em;
+            font-size: clamp(0.4em, 1.2vw, 0.6em);
             line-height: 1.8;
         }
 
         .counter {
             margin-top: 20px;
-            font-size: 0.8em;
+            font-size: clamp(0.5em, 1.5vw, 0.8em);
         }
 
         .link-box {
@@ -230,17 +252,18 @@
 
         .cta-button {
             display: inline-block;
-            padding: 20px 40px;
+            padding: clamp(15px, 3vw, 20px) clamp(30px, 6vw, 40px);
             background: rgba(0, 20, 0, 0.8);
             border: 3px solid #0f0;
             color: #0f0;
             text-decoration: none;
-            font-size: 0.8em;
+            font-size: clamp(0.5em, 1.5vw, 0.8em);
             transition: all 0.3s;
             box-shadow: 0 0 20px #0f0;
+            touch-action: manipulation;
         }
 
-        .cta-button:hover {
+        .cta-button:hover, .cta-button:active {
             background: rgba(0, 255, 0, 0.2);
             transform: scale(1.05);
             box-shadow: 0 0 40px #0f0;
@@ -266,7 +289,7 @@
         .section-divider {
             text-align: center;
             margin: 80px 0 40px 0;
-            font-size: 1.5em;
+            font-size: clamp(0.8em, 2.5vw, 1.5em);
             color: #0f0;
             text-shadow: 0 0 20px #0f0;
         }
@@ -276,16 +299,77 @@
             padding: 40px 0;
             border-top: 4px solid #0f0;
             margin-top: 60px;
-            font-size: 0.6em;
+            font-size: clamp(0.4em, 1.2vw, 0.6em);
+            line-height: 1.8;
         }
 
+        /* Mobile specific optimizations */
         @media (max-width: 768px) {
-            h1 { font-size: 1.5em; }
-            .subtitle { font-size: 0.6em; }
-            .pill-container { gap: 30px; }
-            .pill { min-width: 150px; padding: 20px; }
-            .stream-frame iframe { height: 60vh; }
-            .section-divider { font-size: 1em; }
+            .container {
+                padding: 10px;
+            }
+
+            header {
+                padding: 20px 0;
+            }
+
+            .image-container {
+                margin: 20px auto;
+                border-width: 2px;
+            }
+
+            .stream-container,
+            .tiktok-container {
+                margin: 40px auto;
+                border-width: 2px;
+            }
+
+            .pill {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .section-divider {
+                margin: 40px 0 20px 0;
+            }
+
+            /* Disable Matrix effect on mobile for better performance */
+            #matrix-canvas {
+                opacity: 0.15;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1em;
+            }
+
+            .intro-box p br {
+                display: inline;
+            }
+
+            .intro-box p br::after {
+                content: " ";
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .pill:hover {
+                transform: none;
+            }
+            
+            .pill:active {
+                transform: scale(0.95);
+            }
+        }
+
+        /* Performance optimization */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
         }
     </style>
 </head>
@@ -300,27 +384,26 @@
         </header>
 
         <div class="image-container">
-            <!-- REPLACE THIS WITH YOUR IMAGE URL -->
-            <img src="522d5da8-a9f1-44b8-b5d2-e95f7e37ed99.jpg" alt="The Culture War Split Reality">
+            <img src="522d5da8-a9f1-44b8-b5d2-e95f7e37ed99.jpg" alt="The Culture War Split Reality" loading="lazy">
         </div>
 
-       <div class="intro-box">
-    <p>
-        > I'M JUST SOME GUY ON THE INTERNET<br>
-        > A GAMER WHO OBSERVES OUR<br>
-        > CHAOTIC STUPID SOCIETY<br><br>
-        > WELCOME TO THE SIMULATION_
-    </p>
-</div>
+        <div class="intro-box">
+            <p>
+                > I'M JUST SOME GUY ON THE INTERNET<br>
+                > A GAMER WHO OBSERVES OUR<br>
+                > CHAOTIC STUPID SOCIETY<br><br>
+                > WELCOME TO THE SIMULATION_
+            </p>
+        </div>
 
         <div class="pill-container">
-            <div class="pill red-pill" onclick="choosePill('red')">
+            <div class="pill red-pill" onclick="choosePill('red')" role="button" tabindex="0" aria-label="Choose Red Pill">
                 <h2>RED PILL 💊</h2>
                 <p>WAKE UP<br>SEE THE TRUTH<br>FACE REALITY<br>NO GOING BACK</p>
                 <div class="counter">CHOSEN: <span id="red-count">0</span></div>
             </div>
 
-            <div class="pill blue-pill" onclick="choosePill('blue')">
+            <div class="pill blue-pill" onclick="choosePill('blue')" role="button" tabindex="0" aria-label="Choose Blue Pill">
                 <h2>BLUE PILL 💊</h2>
                 <p>STAY ASLEEP<br>IGNORANCE IS BLISS<br>COMFORTABLE LIES<br>DREAM ON</p>
                 <div class="counter">CHOSEN: <span id="blue-count">0</span></div>
@@ -337,7 +420,9 @@
                 <iframe 
                     allow="autoplay" 
                     allowfullscreen 
+                    loading="lazy"
                     src="https://pilled.net/foxhole/141114/iframe?theme=galaxy" 
+                    title="Live Stream"
                     style="height: 95vh; width: 100%; display: block;">
                 </iframe>
             </div>
@@ -364,7 +449,7 @@
         </div>
 
         <div class="link-box">
-            <a href="https://thecaptainslog.xyz" class="cta-button" target="_blank">
+            <a href="https://thecaptainslog.xyz" class="cta-button" target="_blank" rel="noopener">
                 &gt; ENTER THE CAPTAIN'S LOG_
             </a>
         </div>
@@ -378,15 +463,19 @@
 
     <script async src="https://www.tiktok.com/embed.js"></script>
     <script>
+        // Detect mobile device
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        // Matrix Rain Effect (optimized for mobile)
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
         const matrix = "THECULTUREWAR01アイウエオカキクケコサシスセソタチツテト";
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
+        const fontSize = isMobile ? 12 : 14;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = Array(columns).fill(1);
 
         function drawMatrix() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
@@ -404,18 +493,31 @@
             }
         }
 
-        setInterval(drawMatrix, 50);
+        // Slower animation on mobile
+        const animationSpeed = isMobile ? 80 : 50;
+        setInterval(drawMatrix, animationSpeed);
+
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }, 250);
         });
 
+        // Pill Choice System
         let redCount = parseInt(localStorage.getItem('redPillCount')) || 0;
         let blueCount = parseInt(localStorage.getItem('bluePillCount')) || 0;
         document.getElementById('red-count').textContent = redCount;
         document.getElementById('blue-count').textContent = blueCount;
 
         function choosePill(color) {
+            // Haptic feedback on mobile
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+
             if (color === 'red') {
                 redCount++;
                 localStorage.setItem('redPillCount', redCount);
@@ -432,7 +534,16 @@
                 setTimeout(() => { document.body.style.background = '#000'; }, 200);
             }
         }
+
+        // Keyboard accessibility
+        document.querySelectorAll('.pill').forEach(pill => {
+            pill.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    pill.click();
+                }
+            });
+        });
     </script>
 </body>
 </html>
-
