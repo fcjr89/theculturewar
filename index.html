@@ -1,1 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Culture War - Choose Your Pill</title>
+    <meta name="description" content="The Culture War - A gamer's perspective on society. Matrix-themed retro website. Choose the red pill or blue pill.">
+    <meta name="keywords" content="gaming, culture war, matrix, red pill, blue pill, cyberpunk, retro gaming, social commentary, gamer blog, internet culture">
+    <meta name="author" content="Just Some Guy">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background: #000;
+            color: #0f0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Matrix Rain Effect */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .glitch {
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+            25% { text-shadow: -2px 2px #ff00ff, 2px -2px #00ffff; }
+            50% { text-shadow: 2px -2px #ff00ff, -2px 2px #00ffff; }
+            75% { text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff; }
+            100% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 4px solid #0f0;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #0f0;
+        }
+
+        .subtitle {
+            font-size: 0.8em;
+            color: #0f0;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            border: 4px solid #0f0;
+            box-shadow: 0 0 30px #0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: contrast(1.2) brightness(0.9);
+        }
+
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 0, 0.1) 0px,
+                transparent 2px,
+                transparent 4px,
+                rgba(0, 255, 0, 0.1) 6px
+            );
+            pointer-events: none;
+        }
+
+        .intro-box {
+            background: rgba(0, 20, 0, 0.9);
+            border: 3px solid #0f0;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 700px;
+            box-shadow: 0 0 20px #0f0;
+        }
+
+        .intro-box p {
+            font-size: 0.7em;
+            line-height: 2;
+            text-align: center;
+        }
+
+        /* STREAM CONTAINER STYLES */
+        .stream-container {
+            margin: 60px auto;
+            max-width: 1000px;
+            background: rgba(0, 20, 0, 0.9);
+            border: 4px solid #0f0;
+            padding: 20px;
+            box-shadow: 0 0 40px #0f0;
+            position: relative;
+        }
+
+        .stream-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 0, 0.05) 0px,
+                transparent 2px
+            );
+            pointer-events: none;
+        }
+
+        .stream-frame {
+            position: relative;
+            background: #000;
+            border: 2px solid #0f0;
+        }
+
+        .live-indicator {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff0000;
+            color: #fff;
+            padding: 8px 15px;
+            font-size: 0.6em;
+            z-index: 10;
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px #ff0000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .stream-frame iframe {
+            display: block;
+            width: 100%;
+            height: 95vh;
+            border: none;
+        }
+
+        /* TIKTOK CONTAINER STYLES */
+        .tiktok-container {
+            margin: 60px auto;
+            max-width: 780px;
+            background: rgba(0, 20, 0, 0.9);
+            border: 4px solid #0f0;
+            padding: 30px;
+            box-shadow: 0 0 40px #0f0;
+            text-align: center;
+        }
+
+        .tiktok-container h2 {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #0f0;
+            text-shadow: 0 0 10px #0f0;
+        }
+
+        .tiktok-embed {
+            margin: 0 auto !important;
+        }
+
+        .pill-container {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: rgba(0, 20, 0, 0.8);
+            border: 3px solid;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .pill:hover {
+            transform: scale(1.1);
+        }
+
+        .red-pill {
+            border-color: #ff0000;
+            color: #ff0000;
+        }
+
+        .red-pill:hover {
+            box-shadow: 0 0 40px #ff0000;
+            background: rgba(255, 0, 0, 0.2);
+        }
+
+        .blue-pill {
+            border-color: #0088ff;
+            color: #0088ff;
+        }
+
+        .blue-pill:hover {
+            box-shadow: 0 0 40px #0088ff;
+            background: rgba(0, 136, 255, 0.2);
+        }
+
+        .pill h2 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .pill p {
+            font-size: 0.6em;
+            line-height: 1.8;
+        }
+
+        .counter {
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
+
+        .link-box {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 40px;
+            background: rgba(0, 20, 0, 0.8);
+            border: 3px solid #0f0;
+            color: #0f0;
+            text-decoration: none;
+            font-size: 0.8em;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px #0f0;
+        }
+
+        .cta-button:hover {
+            background: rgba(0, 255, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 0 40px #0f0;
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15) 0px,
+                transparent 1px,
+                transparent 2px,
+                rgba(0, 0, 0, 0.15) 3px
+            );
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .section-divider {
+            text-align: center;
+            margin: 80px 0 40px 0;
+            font-size: 1.5em;
+            color: #0f0;
+            text-shadow: 0 0 20px #0f0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 4px solid #0f0;
+            margin-top: 60px;
+            font-size: 0.6em;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            .subtitle {
+                font-size: 0.6em;
+            }
+            
+            .pill-container {
+                gap: 30px;
+            }
+            
+            .pill {
+                min-width: 150px;
+                padding: 20px;
+            }
+
+            .stream-frame iframe {
+                height: 60vh;
+            }
+
+            .section-divider {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+    <div class="scanlines"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="glitch">THE CULTURE WAR</h1>
+            <p class="subtitle">⚔️ A Digital Battlefield ⚔️</p>
+        </header>
+
+        <div class="image-container">
+            <img src="522d5da8-a9f1-44b8-b5d2-e95f7e37ed99.jpg" alt="The Culture War Split Reality">
+        </div>
+
+        <div class="intro-box">
+            <p>
+                &gt; I'M JUST SOME GUY ON THE INTERNET<br>
+                &gt; A GAMER WHO OBSERVES OUR<br>
+                &gt; CHAOTIC STUPID SOCIETY<br><br>
+                &gt; WELCOME TO THE SIMULATION_
+            </p>
+        </div>
+
+        <div class="pill-container">
+            <div class="pill red-pill" onclick="choosePill('red')">
+                <h2>RED PILL 💊</h2>
+                <p>
+                    WAKE UP<br>
+                    SEE THE TRUTH<br>
+                    FACE REALITY<br>
+                    NO GOING BACK
+                </p>
+                <div class="counter" id="red-counter">CHOSEN: <span id="red-count">0</span></div>
+            </div>
+
+            <div class="pill blue-pill" onclick="choosePill('blue')">
+                <h2>BLUE PILL 💊</h2>
+                <p>
+                    STAY ASLEEP<br>
+                    IGNORANCE IS BLISS<br>
+                    COMFORTABLE LIES<br>
+                    DREAM ON
+                </p>
+                <div class="counter" id="blue-counter">CHOSEN: <span id="blue-count">0</span></div>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            &gt;&gt;&gt; LIVE TRANSMISSION &lt;&lt;&lt;
+        </div>
+
+        <!-- PILLED.NET STREAM CONTAINER -->
+        <div class="stream-container">
+            <div class="stream-frame">
+                <div class="live-indicator">● LIVE STREAM</div>
+                <iframe 
+                    allow="autoplay" 
+                    allowfullscreen="" 
+                    frameborder="0" 
+                    mozallowfullscreen="" 
+                    msallowfullscreen="" 
+                    oallowfullscreen="" 
+                    scrolling="no" 
+                    src="https://pilled.net/foxhole/141114/iframe?theme=galaxy" 
+                    style="height: 95vh; width: 100%; display: block;" 
+                    webkitallowfullscreen="">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            &gt;&gt;&gt; SOCIAL TRANSMISSION &lt;&lt;&lt;
+        </div>
+
+        <!-- TIKTOK CONTAINER -->
+        <div class="tiktok-container">
+            <h2>FOLLOW THE RABBIT</h2>
+            <blockquote 
+                class="tiktok-embed" 
+                cite="https://www.tiktok.com/@the.culture.war" 
+                data-unique-id="the.culture.war" 
+                data-embed-type="creator" 
+                style="max-width: 780px; min-width: 288px;" >
+                <section> 
+                    <a target="_blank" href="https://www.tiktok.com/@the.culture.war?refer=creator_embed">
+                        @the.culture.war
+                    </a> 
+                </section> 
+            </blockquote>
+        </div>
+
+        <div class="link-box">
+            <a href="https://thecaptainslog.xyz" class="cta-button" target="_blank">
+                &gt; ENTER THE CAPTAIN'S LOG_
+            </a>
+        </div>
+
+        <footer>
+            <p>&gt; THE CULTURE WAR - SOLANA BLOCKCHAIN</p>
+            <p>&gt; POWERED BY CHAOS AND OBSERVATIONS</p>
+            <p>&gt; MADE BY JUST SOME GUY™</p>
+        </footer>
+    </div>
+
+    <!-- TikTok Embed Script -->
+    <script async src="https://www.tiktok.com/embed.js"></script>
+
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "THECULTUREWAR01アイウエオカキクケコサシスセソタチツテト";
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrix[Math.floor(Math.random() * matrix.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Pill Choice System
+        let redCount = 0;
+        let blueCount = 0;
+
+        // Load counts from localStorage
+        if (localStorage.getItem('redPillCount')) {
+            redCount = parseInt(localStorage.getItem('redPillCount'));
+            document.getElementById('red-count').textContent = redCount;
+        }
+        if (localStorage.getItem('bluePillCount')) {
+            blueCount = parseInt(localStorage.getItem('bluePillCount'));
+            document.getElementById('blue-count').textContent = blueCount;
+        }
+
+        function choosePill(color) {
+            if (color === 'red') {
+                redCount++;
+                localStorage.setItem('redPillCount', redCount);
+                document.getElementById('red-count').textContent = redCount;
+                
+                alert('⚠️ YOU CHOSE THE RED PILL ⚠️\n\nYou cannot unlearn what you know.\nThe matrix has you...\nFollow the white rabbit.');
+                
+                // Flash effect
+                document.body.style.background = '#300';
+                setTimeout(() => {
+                    document.body.style.background = '#000';
+                }, 200);
+            } else {
+                blueCount++;
+                localStorage.setItem('bluePillCount', blueCount);
+                document.getElementById('blue-count').textContent = blueCount;
+                
+                alert('😴 YOU CHOSE THE BLUE PILL 😴\n\nThe story ends here.\nYou wake up in your bed.\nYou believe whatever you want to believe.');
+                
+                // Flash effect
+                document.body.style.background = '#003';
+                setTimeout(() => {
+                    document.body.style.background = '#000';
+                }, 200);
+            }
+        }
+
+        // Typing effect for subtitle
+        const subtitle = document.querySelector('.intro-box p');
+        const text = subtitle.innerHTML;
+        subtitle.innerHTML = '';
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                subtitle.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+
+        setTimeout(typeWriter, 500);
+    </script>
+</body>
+</html>
+
+
+
 
