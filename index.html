@@ -12,7 +12,7 @@
     <meta name="description" content="The Culture War - A gamer's perspective on society. Matrix-themed retro website. Choose the red pill or blue pill.">
     <meta name="keywords" content="gaming, culture war, matrix, red pill, blue pill, cyberpunk, retro gaming, social commentary">
     
-    <!-- Preconnect -->
+    <!-- Preconnect for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.tiktok.com">
@@ -188,121 +188,6 @@
         .counter {
             margin-top: 20px;
             font-size: clamp(0.5em, 1.5vw, 0.8em);
-        }
-
-        /* KALSHI PREDICTION MARKETS */
-        .kalshi-section {
-            margin: 60px auto;
-            max-width: 1000px;
-            background: rgba(0, 20, 0, 0.9);
-            border: 4px solid #00ff88;
-            padding: clamp(20px, 5vw, 40px);
-            box-shadow: 0 0 40px #00ff88;
-        }
-
-        .kalshi-section h2 {
-            font-size: clamp(0.8em, 2.5vw, 1.2em);
-            margin-bottom: 10px;
-            color: #00ff88;
-            text-shadow: 0 0 10px #00ff88;
-            text-align: center;
-        }
-
-        .kalshi-subtitle {
-            font-size: clamp(0.4em, 1vw, 0.5em);
-            color: #0f0;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        .markets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .market-card {
-            background: rgba(0, 0, 0, 0.7);
-            border: 3px solid #00ff88;
-            padding: 20px;
-            transition: all 0.3s;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-        }
-
-        .market-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
-        }
-
-        .market-title {
-            font-size: 0.7em;
-            color: #fff;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .market-odds {
-            display: flex;
-            justify-content: space-between;
-            margin: 15px 0;
-        }
-
-        .odds-item {
-            text-align: center;
-        }
-
-        .odds-label {
-            font-size: 0.5em;
-            color: #00ff88;
-            margin-bottom: 5px;
-        }
-
-        .odds-value {
-            font-size: 1em;
-            color: #fff;
-            text-shadow: 0 0 10px #00ff88;
-        }
-
-        .market-volume {
-            font-size: 0.5em;
-            color: #888;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        .trade-button {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: rgba(0, 255, 136, 0.2);
-            border: 2px solid #00ff88;
-            color: #00ff88;
-            font-size: 0.6em;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: all 0.3s;
-            font-family: 'Press Start 2P', monospace;
-        }
-
-        .trade-button:hover {
-            background: rgba(0, 255, 136, 0.4);
-            box-shadow: 0 0 15px #00ff88;
-        }
-
-        .kalshi-loading {
-            text-align: center;
-            padding: 40px;
-            color: #00ff88;
-            font-size: 0.7em;
-        }
-
-        .kalshi-error {
-            text-align: center;
-            padding: 40px;
-            color: #ff0000;
-            font-size: 0.7em;
         }
 
         /* COINBASE WALLET SECTION */
@@ -483,20 +368,16 @@
             text-shadow: 0 0 15px #14F195;
         }
 
-        .disconnect-button, .refresh-button {
+        .disconnect-button {
             margin-top: 20px;
             padding: 12px 30px;
-            border: 2px solid;
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid #ff0000;
+            color: #ff0000;
             font-size: 0.6em;
             cursor: pointer;
             transition: all 0.3s;
             font-family: 'Press Start 2P', monospace;
-        }
-
-        .disconnect-button {
-            background: rgba(255, 0, 0, 0.2);
-            border-color: #ff0000;
-            color: #ff0000;
         }
 
         .disconnect-button:hover,
@@ -507,14 +388,154 @@
         }
 
         .refresh-button {
+            margin-top: 15px;
+            padding: 10px 25px;
             background: rgba(0, 82, 255, 0.2);
-            border-color: #0052FF;
+            border: 2px solid #0052FF;
             color: #0052FF;
+            font-size: 0.5em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Press Start 2P', monospace;
         }
 
         .refresh-button:hover {
             background: rgba(0, 82, 255, 0.4);
             box-shadow: 0 0 15px #0052FF;
+        }
+
+        /* KALSHI MARKETS SECTION */
+        .kalshi-section {
+            margin: 60px auto;
+            max-width: 1000px;
+            background: rgba(0, 20, 0, 0.9);
+            border: 4px solid #ff6b00;
+            padding: clamp(20px, 5vw, 40px);
+            box-shadow: 0 0 40px #ff6b00;
+        }
+
+        .kalshi-section h2 {
+            font-size: clamp(0.8em, 2.5vw, 1.2em);
+            margin-bottom: 10px;
+            color: #ff6b00;
+            text-shadow: 0 0 10px #ff6b00;
+            text-align: center;
+        }
+
+        .kalshi-subtitle {
+            font-size: clamp(0.4em, 1vw, 0.5em);
+            color: #0f0;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .kalshi-markets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .kalshi-market {
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid #ff6b00;
+            padding: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+        }
+
+        .kalshi-market:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(255, 107, 0, 0.6);
+        }
+
+        .market-title {
+            font-size: 0.7em;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            min-height: 60px;
+        }
+
+        .market-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 107, 0, 0.3);
+        }
+
+        .market-category {
+            font-size: 0.5em;
+            color: #ff6b00;
+            text-transform: uppercase;
+        }
+
+        .market-volume {
+            font-size: 0.5em;
+            color: #14F195;
+        }
+
+        .market-prices {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .price-yes, .price-no {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            text-align: center;
+            border: 2px solid;
+        }
+
+        .price-yes {
+            border-color: #00ff00;
+        }
+
+        .price-no {
+            border-color: #ff0000;
+        }
+
+        .price-label {
+            display: block;
+            font-size: 0.5em;
+            margin-bottom: 5px;
+            opacity: 0.7;
+        }
+
+        .price-value {
+            display: block;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .price-yes .price-value {
+            color: #00ff00;
+        }
+
+        .price-no .price-value {
+            color: #ff0000;
+        }
+
+        .market-link {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background: rgba(255, 107, 0, 0.2);
+            border: 2px solid #ff6b00;
+            color: #ff6b00;
+            text-decoration: none;
+            font-size: 0.5em;
+            transition: all 0.3s;
+        }
+
+        .market-link:hover {
+            background: rgba(255, 107, 0, 0.4);
+            box-shadow: 0 0 15px #ff6b00;
         }
 
         .stream-container {
@@ -691,17 +712,52 @@
             line-height: 1.8;
         }
 
+        .loader {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            min-height: 100px;
+        }
+
+        .loader:after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 30px;
+            box-sizing: border-box;
+            margin: 0;
+            border: 2px solid;
+            border-color: currentColor transparent currentColor transparent;
+            border-radius: 100%;
+            animation: spinner .65s infinite linear;
+            transform-origin: center;
+        }
+
+        @keyframes spinner {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-msg {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #ff0000;
+            padding: 20px;
+            text-align: center;
+            min-height: 100px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
-            }
-
-            .markets-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .balance-grid {
-                grid-template-columns: 1fr;
             }
 
             .tiktok-embed-desktop {
@@ -712,18 +768,12 @@
                 display: block;
             }
 
-            .stream-frame iframe {
-                height: 50vh;
+            .kalshi-markets {
+                grid-template-columns: 1fr;
             }
-        }
 
-        @media (hover: none) and (pointer: coarse) {
-            .pill:hover {
-                transform: none;
-            }
-            
-            .pill:active {
-                transform: scale(0.95);
+            .balance-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -762,22 +812,6 @@
                 <h2>BLUE PILL 💊</h2>
                 <p>STAY ASLEEP<br>IGNORANCE IS BLISS<br>COMFORTABLE LIES<br>DREAM ON</p>
                 <div class="counter">CHOSEN: <span id="blue-count">0</span></div>
-            </div>
-        </div>
-
-        <div class="section-divider">
-            &gt;&gt;&gt; PREDICTION MARKETS &lt;&lt;&lt;
-        </div>
-
-        <!-- KALSHI PREDICTION MARKETS -->
-        <div class="kalshi-section">
-            <h2>🎲 LIVE PREDICTION MARKETS</h2>
-            <p class="kalshi-subtitle">
-                BET ON THE FUTURE • REAL MONEY • REGULATED MARKETS
-            </p>
-            
-            <div id="kalshi-markets" class="markets-grid">
-                <div class="kalshi-loading">Loading markets...</div>
             </div>
         </div>
 
@@ -848,6 +882,22 @@
         </div>
 
         <div class="section-divider">
+            &gt;&gt;&gt; KALSHI PREDICTION MARKETS &lt;&lt;&lt;
+        </div>
+
+        <div class="kalshi-section">
+            <h2>REAL-TIME MARKETS</h2>
+            <p class="kalshi-subtitle">
+                LIVE PREDICTION MARKETS • AUTHENTICATED DATA<br>
+                TRADE ON REAL EVENTS
+            </p>
+            
+            <div id="kalshiMarkets" class="kalshi-markets">
+                <div class="loader"></div>
+            </div>
+        </div>
+
+        <div class="section-divider">
             &gt;&gt;&gt; LIVE TRANSMISSION &lt;&lt;&lt;
         </div>
 
@@ -913,7 +963,6 @@
     <script>
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
-        // Matrix Rain Effect
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -950,96 +999,6 @@
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             }, 250);
-        });
-
-        // ==========================================
-        // KALSHI API INTEGRATION
-        // ==========================================
-        
-        // 🔥🔥🔥 ADD YOUR KALSHI API KEY HERE 🔥🔥🔥
-        const KALSHI_API_KEY = '5b9ffe3b-fc19-4f00-8bff-5044759cd246';
-        
-        // Kalshi API endpoints
-        const KALSHI_API_BASE = 'https://api.elections.kalshi.com/trade-api/v2';
-        const KALSHI_DEMO_BASE = 'https://demo-api.kalshi.co/trade-api/v2';
-        
-        // Use demo for testing, switch to real API when ready
-        const KALSHI_BASE = KALSHI_DEMO_BASE;
-
-        async function fetchKalshiMarkets() {
-            try {
-                const marketsContainer = document.getElementById('kalshi-markets');
-                marketsContainer.innerHTML = '<div class="kalshi-loading">Loading markets...</div>';
-
-                // Fetch markets from Kalshi API
-                const response = await fetch(`${KALSHI_BASE}/markets?limit=6&status=open`, {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Authorization': KALSHI_API_KEY ? `Bearer ${KALSHI_API_KEY}` : ''
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                
-                if (!data.markets || data.markets.length === 0) {
-                    marketsContainer.innerHTML = '<div class="kalshi-error">No markets available</div>';
-                    return;
-                }
-
-                displayMarkets(data.markets);
-
-            } catch (error) {
-                console.error('Kalshi API Error:', error);
-                document.getElementById('kalshi-markets').innerHTML = 
-                    '<div class="kalshi-error">Error loading markets. Check console for details.</div>';
-            }
-        }
-
-        function displayMarkets(markets) {
-            const marketsContainer = document.getElementById('kalshi-markets');
-            marketsContainer.innerHTML = '';
-
-            markets.forEach(market => {
-                const yesPrice = market.yes_bid || 0;
-                const noPrice = market.no_bid || 0;
-                const volume = market.volume || 0;
-
-                const card = document.createElement('div');
-                card.className = 'market-card';
-                card.innerHTML = `
-                    <h3 class="market-title">${market.title}</h3>
-                    <div class="market-odds">
-                        <div class="odds-item">
-                            <div class="odds-label">YES</div>
-                            <div class="odds-value">${(yesPrice * 100).toFixed(0)}¢</div>
-                        </div>
-                        <div class="odds-item">
-                            <div class="odds-label">NO</div>
-                            <div class="odds-value">${(noPrice * 100).toFixed(0)}¢</div>
-                        </div>
-                    </div>
-                    <div class="market-volume">Volume: $${volume.toLocaleString()}</div>
-                    <button class="trade-button" onclick="tradeMarket('${market.ticker}')">
-                        TRADE ON KALSHI →
-                    </button>
-                `;
-                marketsContainer.appendChild(card);
-            });
-        }
-
-        function tradeMarket(ticker) {
-            window.open(`https://kalshi.com/markets/${ticker}`, '_blank');
-        }
-
-        // Load markets on page load
-        window.addEventListener('load', () => {
-            fetchKalshiMarkets();
-            // Refresh markets every 30 seconds
-            setInterval(fetchKalshiMarkets, 30000);
         });
 
         // ==========================================
@@ -1232,6 +1191,160 @@
         }
 
         // ==========================================
+        // KALSHI PRODUCTION MARKETS - AUTHENTICATED
+        // ==========================================
+
+        // 🔑 ADD YOUR REAL KALSHI API CREDENTIALS HERE ⬇️⬇️⬇️
+        const KALSHI_API_KEY = '5b9ffe3b-fc19-4f00-8bff-5044759cd246';  // ← PASTE YOUR KEY HERE
+        const KALSHI_SECRET = 'MIIEpAIBAAKCAQEA0XCYflVsORXbvgZVNclw0Otr47ugviP0Shfve+o/x0ZLCrib
+lETDU3GXRhQ1QQvEeFq9uun+vSyq2e5+0ih18YjrllefcfNd0vuQq0gC3uSpG6mw
+aOvoIZ2ivBYOzAic+2IvHGJurXz2DLsMkKns9vOviDJxUriT/TrK4EffjKcHOb/9
+/kmyV6M3xUGJ/4n5tqgycdenAOr9iIXYbHiJYKzNe0taIcNMd5PkV29YKPccZPWR
+MDaE7Ot2sUh2ArH/ITcAAv1A+U0809ymKcybac6PMLInnoppsnIc9ifUMQDZTffA
+St0lP37yAgaQEk1niaR6u5t1xAiWjDhj91ETOwIDAQABAoIBAQCCqICpx7bVQhqt
+SJweCwZzf3r2PpZAKIP9OUNxBak2M1cbYCHG9ML6KpIZ6P90DdhK0SkuE06VS+lm
+PdAmYZF61lVKnG1fFFlDByewgyMvVG1fUZQ5UHqnhgUA263tga4VcaI8TfgICT4i
+oQpssWWghlPKXtWtqnLAds4b7xq6TlQaucN2ozTjTUfa8i8j7mhZrWuKV/vsdC40
+9OxKG8++UMEmszI5HVf9U54fsus8oygRwiO3zkBn1g2H+XxW04UVdhvR704dRWH9
+yBquHwgRLzmTCS1tABF6GIHygwzFruxYmIWYflo/NRi2hPc4rB4Yh4WtuOEUl/zZ
+IwK2T5rZAoGBAPGaaRKPGF2P/bnO1hoYXQL7XAWf9Hpgv22dm2wbAVE43oHA/Wpx
+l0poOBGMZZ7hsVPFRaXFQ1IRkYleqCmdTcJCmJ1o+m7yvQgkM4aezGpusrTXvhcn
+7VmGqU+XGOg2Y2por7On5w4N8j0/RUDtnM5mj2/DYF7PI8B86iFzwBzFAoGBAN3r
+itnf64ABfr0lRiMUlJIL9yfRhV0GKABkN+A68ucrPYJP9ru8Hxo+bBzoeQ2RF8Hr
+FIadYuOsfm3YbWQH+KwxOzOovLkWwJlZyLc2iQ88i6i+FXdhxbQOvmoIdlWZWe2b
+C9zq9+1FAHmOBE1cbvxaJ3gS+4l7a8lpLWnCP2//AoGBAKL2YPsYs/mf/ydOYVHW
+rx4sx4QvwSquiVB5p3UCvh+3+TWSJByhI8gXhgIoLf8+Amsbu/+1j9QSb5U12L3B
+Ecr/OouqXIlrh5+vM2YRRJZhtn6OqvRZhRoG37sEktNGpEYI+MJ4dTwgog032RGT
+dFowCX38TcuFcnsKhq4rsiB1AoGAfOAkHAHCtR8iQDEPTIIyMBSHmWJvFy91pvK9
+9nF1aduNGx0ADBgJsGzbzVCLfbTdl4M+45kAonjYE9urgpRxvANf+uvCdqx06FX7
+eg04BtjdBbEgxzK/W1jIkUX9wKEwV2HdxQx7QoqHf98IULfoxBu/BfQ4kt5egtGq
+ek6R/+UCgYBn3V90RxkutXyuvj0bv9WXpRTeZ6PTbGwtIHYNSgul4Yx7Xya7U6Ti
+FStzH7X361LRSYfZ5FPNZ9wkIA5HGnncXdGGAb7rvxzkddZlNf2iJ/XhRQREjl1w
+WGNGU7olgIKL0GWVD7BBsiiHRukP/mmZP2b3ZzdV5M5z3LYWbo0kew==';  // ← PASTE YOUR SECRET HERE
+        const KALSHI_BASE_URL = 'https://api.kalshi.co/trade-api/v2';
+
+        async function getKalshiAuthToken() {
+            try {
+                const response = await fetch(`${KALSHI_BASE_URL}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: KALSHI_API_KEY,
+                        password: KALSHI_SECRET
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Auth failed: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                return data.token;
+            } catch (error) {
+                console.error('❌ Kalshi auth error:', error);
+                return null;
+            }
+        }
+
+        async function loadKalshiMarkets() {
+            const kalshiSection = document.getElementById('kalshiMarkets');
+            
+            if (!kalshiSection) {
+                console.log('Kalshi section not found');
+                return;
+            }
+            
+            kalshiSection.innerHTML = '<div class="loader"></div>';
+            
+            try {
+                console.log('📊 Authenticating with Kalshi...');
+                
+                const token = await getKalshiAuthToken();
+                
+                if (!token) {
+                    throw new Error('Authentication failed - check your API keys');
+                }
+                
+                console.log('✅ Authenticated! Loading real markets...');
+                
+                const response = await fetch(`${KALSHI_BASE_URL}/markets?limit=10&status=open`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.status} ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('✅ Real Kalshi markets loaded:', data);
+                
+                if (data.markets && data.markets.length > 0) {
+                    displayKalshiMarkets(data.markets);
+                } else {
+                    kalshiSection.innerHTML = '<p class="error-msg">No active markets available</p>';
+                }
+                
+            } catch (error) {
+                console.error('❌ Kalshi error:', error);
+                kalshiSection.innerHTML = `
+                    <div class="error-msg">
+                        <p>Could not load Kalshi markets</p>
+                        <p style="font-size:12px;margin-top:10px;opacity:0.7;">Error: ${error.message}</p>
+                        <p style="font-size:11px;margin-top:5px;opacity:0.5;">Add your API credentials (lines 1050-1051)</p>
+                    </div>
+                `;
+            }
+        }
+
+        function displayKalshiMarkets(markets) {
+            const kalshiSection = document.getElementById('kalshiMarkets');
+            
+            const html = markets.slice(0, 6).map(market => {
+                const title = market.title || 'Unknown Market';
+                const category = market.category || 'General';
+                const volume = market.volume || 0;
+                const yesPrice = market.yes_ask || market.last_price || '—';
+                const noPrice = market.no_ask || (100 - (market.last_price || 0)) || '—';
+                const ticker = market.ticker_name || '';
+                
+                return `
+                    <div class="kalshi-market">
+                        <div class="market-title">${title}</div>
+                        <div class="market-info">
+                            <span class="market-category">${category}</span>
+                            <span class="market-volume">Vol: $${volume.toLocaleString()}</span>
+                        </div>
+                        <div class="market-prices">
+                            <div class="price-yes">
+                                <span class="price-label">YES</span>
+                                <span class="price-value">${yesPrice}¢</span>
+                            </div>
+                            <div class="price-no">
+                                <span class="price-label">NO</span>
+                                <span class="price-value">${noPrice}¢</span>
+                            </div>
+                        </div>
+                        ${ticker ? `
+                            <a href="https://kalshi.com/markets/${ticker}" 
+                               target="_blank" 
+                               rel="noopener" 
+                               class="market-link">
+                                Trade on Kalshi →
+                            </a>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+            
+            kalshiSection.innerHTML = html;
+        }
+
+        // ==========================================
         // PILL CHOICE SYSTEM
         // ==========================================
         
@@ -1270,8 +1383,17 @@
                 }
             });
         });
+
+        window.addEventListener('load', () => {
+            console.log('🎮 The Culture War loaded');
+            getCryptoPrices();
+            
+            const kalshiSection = document.getElementById('kalshiMarkets');
+            if (kalshiSection) {
+                console.log('✅ Kalshi section found, loading markets...');
+                loadKalshiMarkets();
+            }
+        });
     </script>
 </body>
 </html>
-
-
