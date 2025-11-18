@@ -1221,85 +1221,87 @@ eg04BtjdBbEgxzK/W1jIkUX9wKEwV2HdxQx7QoqHf98IULfoxBu/BfQ4kt5egtGq
 ek6R/+UCgYBn3V90RxkutXyuvj0bv9WXpRTeZ6PTbGwtIHYNSgul4Yx7Xya7U6Ti
 FStzH7X361LRSYfZ5FPNZ9wkIA5HGnncXdGGAb7rvxzkddZlNf2iJ/XhRQREjl1w
 WGNGU7olgIKL0GWVD7BBsiiHRukP/mmZP2b3ZzdV5M5z3LYWbo0kew==';  // ← PASTE YOUR SECRET HERE
-        const KALSHI_BASE_URL = 'https://api.kalshi.co/trade-api/v2';
+        const WORKER_URL = 'https://kalshi-proxy.your-account.workers.dev';  // Your worker URL
 
         async function getKalshiAuthToken() {
-            try {
-                const response = await fetch(`${KALSHI_BASE_URL}/login`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: KALSHI_API_KEY,
-                        password: KALSHI_SECRET
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`Auth failed: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                return data.token;
-            } catch (error) {
-                console.error('❌ Kalshi auth error:', error);
-                return null;
-            }
-        }
+  try {
+    const response = await fetch(`${WORKER_URL}?path=/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: KALSHI_API_KEY,
+        password: KALSHI_SECRET
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Auth failed: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.token;
+  } catch (error) {
+    console.error('❌ Kalshi auth error:', error);
+    return null;
+  }
+}
+
 
         async function loadKalshiMarkets() {
-            const kalshiSection = document.getElementById('kalshiMarkets');
-            
-            if (!kalshiSection) {
-                console.log('Kalshi section not found');
-                return;
-            }
-            
-            kalshiSection.innerHTML = '<div class="loader"></div>';
-            
-            try {
-                console.log('📊 Authenticating with Kalshi...');
-                
-                const token = await getKalshiAuthToken();
-                
-                if (!token) {
-                    throw new Error('Authentication failed - check your API keys');
-                }
-                
-                console.log('✅ Authenticated! Loading real markets...');
-                
-                const response = await fetch(`${KALSHI_BASE_URL}/markets?limit=10&status=open`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`API error: ${response.status} ${response.statusText}`);
-                }
-                
-                const data = await response.json();
-                console.log('✅ Real Kalshi markets loaded:', data);
-                
-                if (data.markets && data.markets.length > 0) {
-                    displayKalshiMarkets(data.markets);
-                } else {
-                    kalshiSection.innerHTML = '<p class="error-msg">No active markets available</p>';
-                }
-                
-            } catch (error) {
-                console.error('❌ Kalshi error:', error);
-                kalshiSection.innerHTML = `
-                    <div class="error-msg">
-                        <p>Could not load Kalshi markets</p>
-                        <p style="font-size:12px;margin-top:10px;opacity:0.7;">Error: ${error.message}</p>
-                        <p style="font-size:11px;margin-top:5px;opacity:0.5;">Add your API credentials (lines 1050-1051)</p>
-                    </div>
-                `;
-            }
-        }
+  const kalshiSection = document.getElementById('kalshiMarkets');
+  
+  if (!kalshiSection) {
+    console.log('Kalshi section not found');
+    return;
+  }
+  
+  kalshiSection.innerHTML = '<div class="loader"></div>';
+  
+  try {
+    console.log('📊 Authenticating with Kalshi via Worker...');
+    
+    const token = await getKalshiAuthToken();
+    
+    if (!token) {
+      throw new Error('Authentication failed - check your API keys');
+    }
+    
+    console.log('✅ Authenticated! Loading real markets...');
+    
+    // Fetch markets through worker
+    const response = await fetch(`${WORKER_URL}?path=/markets?limit=10&status=open`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log('✅ Real Kalshi markets loaded:', data);
+    
+    if (data.markets && data.markets.length > 0) {
+      displayKalshiMarkets(data.markets);
+    } else {
+      kalshiSection.innerHTML = '<p class="error-msg">No active markets available</p>';
+    }
+    
+  } catch (error) {
+    console.error('❌ Kalshi error:', error);
+    kalshiSection.innerHTML = `
+      <div class="error-msg">
+        <p>Could not load Kalshi markets</p>
+        <p style="font-size:12px;margin-top:10px;opacity:0.7;">Error: ${error.message}</p>
+      </div>
+    `;
+  }
+}
+
 
         function displayKalshiMarkets(markets) {
             const kalshiSection = document.getElementById('kalshiMarkets');
@@ -1397,3 +1399,4 @@ WGNGU7olgIKL0GWVD7BBsiiHRukP/mmZP2b3ZzdV5M5z3LYWbo0kew==';  // ← PASTE YOUR SE
     </script>
 </body>
 </html>
+
