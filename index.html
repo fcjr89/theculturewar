@@ -1159,96 +1159,105 @@
         }
 
         // ==========================================
-        // KALSHI MARKETS - SIMPLE PUBLIC API (NO AUTH)
-        // ==========================================
-        
-        const KALSHI_BASE_URL = 'https://api.kalshi.co/trade-api/v2';
+// KALSHI MARKETS - SIMPLE PUBLIC API
+// ==========================================
 
-        async function loadKalshiMarkets() {
-            const kalshiSection = document.getElementById('kalshiMarkets');
-            
-            if (!kalshiSection) {
-                console.log('Kalshi section not found');
-                return;
-            }
-            
-            kalshiSection.innerHTML = '<div class="loader"></div>';
-            
-            try {
-                console.log('📊 Loading Kalshi markets...');
-                
-                const response = await fetch(`${KALSHI_BASE_URL}/markets?limit=10&status=open`, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`API error: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                console.log('✅ Markets loaded:', data);
-                
-                if (data.markets && data.markets.length > 0) {
-                    displayKalshiMarkets(data.markets);
-                } else {
-                    kalshiSection.innerHTML = '<p class="error-msg">No active markets</p>';
-                }
-                
-            } catch (error) {
-                console.error('❌ Kalshi error:', error);
-                kalshiSection.innerHTML = `
-                    <div class="error-msg">
-                        <p>Could not load markets</p>
-                        <p style="font-size:12px;margin-top:10px;">${error.message}</p>
-                    </div>
-                `;
-            }
-        }
+const KALSHI_BASE_URL = 'https://api.kalshi.co/trade-api/v2';
 
-        function displayKalshiMarkets(markets) {
-            const kalshiSection = document.getElementById('kalshiMarkets');
-            
-            const html = markets.slice(0, 6).map(market => {
-                const title = market.title || 'Unknown Market';
-                const category = market.category || 'General';
-                const volume = market.volume || 0;
-                const yesPrice = market.yes_ask || market.last_price || '—';
-                const noPrice = market.no_ask || (100 - (market.last_price || 0)) || '—';
-                const ticker = market.ticker_name || '';
-                
-                return `
-                    <div class="kalshi-market">
-                        <div class="market-title">${title}</div>
-                        <div class="market-info">
-                            <span class="market-category">${category}</span>
-                            <span class="market-volume">Vol: $${volume.toLocaleString()}</span>
-                        </div>
-                        <div class="market-prices">
-                            <div class="price-yes">
-                                <span class="price-label">YES</span>
-                                <span class="price-value">${yesPrice}¢</span>
-                            </div>
-                            <div class="price-no">
-                                <span class="price-label">NO</span>
-                                <span class="price-value">${noPrice}¢</span>
-                            </div>
-                        </div>
-                        ${ticker ? `
-                            <a href="https://kalshi.com/markets/${ticker}" 
-                               target="_blank" 
-                               rel="noopener" 
-                               class="market-link">
-                                View on Kalshi →
-                            </a>
-                        ` : ''}
-                    </div>
-                `;
-            }).join('');
-            
-            kalshiSection.innerHTML = html;
-        }
+async function loadKalshiMarkets() {
+  const kalshiSection = document.getElementById('kalshiMarkets');
+  
+  if (!kalshiSection) {
+    console.log('Kalshi section not found');
+    return;
+  }
+  
+  kalshiSection.innerHTML = '<div class="loader"></div>';
+  
+  try {
+    console.log('📊 Loading Kalshi markets...');
+    
+    // Public endpoint - no authentication needed
+    const response = await fetch(`${KALSHI_BASE_URL}/markets?limit=10&status=open`, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`API returned ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log('✅ Markets loaded:', data);
+    
+    if (data.markets && data.markets.length > 0) {
+      displayKalshiMarkets(data.markets);
+    } else {
+      kalshiSection.innerHTML = '<p class="error-msg">No active markets</p>';
+    }
+    
+  } catch (error) {
+    console.error('❌ Kalshi error:', error);
+    kalshiSection.innerHTML = `
+      <div class="error-msg">
+        <p>Could not load markets</p>
+        <p style="font-size:12px;margin-top:10px;">${error.message}</p>
+      </div>
+    `;
+  }
+}
+
+function displayKalshiMarkets(markets) {
+  const kalshiSection = document.getElementById('kalshiMarkets');
+  
+  const html = markets.slice(0, 5).map(market => {
+    const title = market.title || 'Unknown Market';
+    const category = market.category || 'General';
+    const volume = market.volume || 0;
+    const yesPrice = market.yes_ask || market.last_price || '—';
+    const noPrice = market.no_ask || (100 - (market.last_price || 0)) || '—';
+    const ticker = market.ticker_name || '';
+    
+    return `
+      <div class="kalshi-market">
+        <div class="market-title">${title}</div>
+        <div class="market-info">
+          <span class="market-category">${category}</span>
+          <span class="market-volume">Vol: $${volume.toLocaleString()}</span>
+        </div>
+        <div class="market-prices">
+          <div class="price-yes">
+            <span class="price-label">YES</span>
+            <span class="price-value">${yesPrice}¢</span>
+          </div>
+          <div class="price-no">
+            <span class="price-label">NO</span>
+            <span class="price-value">${noPrice}¢</span>
+          </div>
+        </div>
+        ${ticker ? `
+          <a href="https://kalshi.com/markets/${ticker}" 
+             target="_blank" 
+             rel="noopener" 
+             class="market-link">
+            View on Kalshi →
+          </a>
+        ` : ''}
+      </div>
+    `;
+  }).join('');
+  
+  kalshiSection.innerHTML = html;
+}
+
+window.addEventListener('load', () => {
+  console.log('🎮 Page loaded, checking for Kalshi...');
+  if (document.getElementById('kalshiMarkets')) {
+    loadKalshiMarkets();
+  }
+});
+
 
         // ==========================================
         // PILL CHOICE SYSTEM
@@ -1307,3 +1316,4 @@
     </script>
 </body>
 </html>
+
