@@ -184,115 +184,6 @@
             font-size: clamp(0.5em, 1.5vw, 0.8em);
         }
 
-        /* KALSHI SECTION */
-        .kalshi-section {
-            margin: 40px auto;
-            max-width: 1000px;
-            background: rgba(0, 20, 0, 0.9);
-            border: 4px solid #0f0;
-            padding: clamp(20px, 5vw, 40px);
-            box-shadow: 0 0 40px #0f0;
-        }
-
-        .kalshi-section h2 {
-            font-size: clamp(0.8em, 2.5vw, 1.2em);
-            margin-bottom: 30px;
-            color: #0f0;
-            text-shadow: 0 0 10px #0f0;
-            text-align: center;
-        }
-
-        .kalshi-markets {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .kalshi-market {
-            background: rgba(0, 0, 0, 0.7);
-            border: 3px solid #0f0;
-            padding: 20px;
-            transition: all 0.3s;
-        }
-
-        .kalshi-market:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
-        }
-
-        .market-title {
-            font-size: 0.7em;
-            color: #fff;
-            margin-bottom: 15px;
-            line-height: 1.4;
-            min-height: 60px;
-        }
-
-        .market-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.5em;
-            color: #888;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
-        }
-
-        .market-category {
-            color: #0f0;
-        }
-
-        .market-prices {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .price-yes, .price-no {
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .price-yes {
-            border-color: #00ff00;
-        }
-
-        .price-no {
-            border-color: #ff0000;
-        }
-
-        .price-label {
-            display: block;
-            font-size: 0.5em;
-            margin-bottom: 5px;
-        }
-
-        .price-value {
-            display: block;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-
-        .market-link {
-            display: block;
-            text-align: center;
-            padding: 10px;
-            background: rgba(0, 255, 0, 0.1);
-            border: 2px solid #0f0;
-            color: #0f0;
-            text-decoration: none;
-            font-size: 0.5em;
-            transition: all 0.3s;
-        }
-
-        .market-link:hover {
-            background: rgba(0, 255, 0, 0.2);
-            box-shadow: 0 0 15px #0f0;
-        }
-
         .stream-container {
             margin: 40px auto;
             max-width: 1000px;
@@ -490,27 +381,44 @@
             transform: scale(0.95);
         }
 
-        .link-box {
+        /* CAPTAIN'S LOG SECTION */
+        .captains-log-section {
+            margin: 40px auto;
+            max-width: 1000px;
+            background: rgba(0, 20, 0, 0.9);
+            border: 4px solid #FFD700;
+            padding: clamp(20px, 5vw, 40px);
+            box-shadow: 0 0 40px #FFD700;
+        }
+
+        .captains-log-section h2 {
+            font-size: clamp(0.8em, 2.5vw, 1.2em);
+            margin-bottom: 30px;
+            color: #FFD700;
+            text-shadow: 0 0 10px #FFD700;
             text-align: center;
-            margin: 60px 0;
         }
 
         .captains-log-button {
-            display: inline-block;
-            padding: clamp(15px, 3vw, 20px) clamp(30px, 6vw, 40px);
-            background: rgba(0, 20, 0, 0.8);
-            border: 3px solid #8B4513;
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(139, 69, 19, 0.3);
+            border: 4px solid #FFD700;
             color: #FFD700;
             text-decoration: none;
-            font-size: clamp(0.5em, 1.5vw, 0.8em);
+            font-size: clamp(0.8em, 2vw, 1.2em);
             transition: all 0.3s;
-            box-shadow: 0 0 20px #FFD700;
-            touch-action: manipulation;
+            box-shadow: 0 0 30px #FFD700;
+            padding: clamp(30px, 6vw, 50px);
+            text-align: center;
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             font-weight: bold;
+            cursor: pointer;
         }
 
         .captains-log-button:before {
@@ -520,8 +428,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            transition: left 0.7s;
         }
 
         .captains-log-button:hover:before {
@@ -529,10 +437,10 @@
         }
 
         .captains-log-button:hover, .captains-log-button:active {
-            background: rgba(139, 69, 19, 0.3);
+            background: rgba(160, 82, 45, 0.5);
             transform: scale(1.05);
-            box-shadow: 0 0 40px #FFD700, 0 0 60px #8B4513;
-            border-color: #FFD700;
+            box-shadow: 0 0 60px #FFD700, 0 0 80px #8B4513;
+            border-color: #FFA500;
         }
 
         .scanlines {
@@ -616,10 +524,6 @@
                 padding: 10px;
             }
 
-            .kalshi-markets {
-                grid-template-columns: 1fr;
-            }
-
             .stream-frame iframe {
                 height: 50vh;
             }
@@ -641,7 +545,7 @@
     <div class="container">
         <header>
             <h1 class="glitch">THE CULTURE WAR</h1>
-            <p class="subtitle">⚔️ A Digital Battlefield ⚔️</p>
+            <p class="subtitle">⚔️ A Digital Battlefield  ⚔️</p>
         </header>
 
         <div class="image-container">
@@ -659,7 +563,7 @@
 
         <div class="pill-container">
             <div class="pill red-pill" onclick="choosePill('red')" role="button" tabindex="0" aria-label="Choose Red Pill">
-                <h2>RED PILL 💊</h2>
+                <h2>RED PILL  💊</h2>
                 <p>WAKE UP<br>SEE THE TRUTH<br>FACE REALITY<br>NO GOING BACK</p>
                 <div class="counter">CHOSEN: <span id="red-count">0</span></div>
             </div>
@@ -719,19 +623,13 @@
         </div>
 
         <div class="section-divider">
-            &gt;&gt;&gt; PREDICTION MARKETS &lt;&lt;&lt;
+            &gt;&gt;&gt; THE CAPTAIN'S LOG &lt;&lt;&lt;
         </div>
 
-        <div class="kalshi-section">
-            <h2>📊 KALSHI PREDICTION MARKETS</h2>
-            <div id="kalshiMarkets" class="kalshi-markets">
-                <div class="loader"></div>
-            </div>
-        </div>
-
-        <div class="link-box">
+        <div class="captains-log-section">
+            <h2>⚓ NAVIGATE TO THE CAPTAIN'S LOG</h2>
             <a href="https://thecaptainslog.xyz" class="captains-log-button" target="_blank" rel="noopener">
-                ⚓ ENTER THE CAPTAIN'S LOG_
+                ENTER THE CAPTAIN'S LOG  ⚓
             </a>
         </div>
 
@@ -891,113 +789,6 @@
         });
 
         // ==========================================
-        // KALSHI MARKETS - PUBLIC API
-        // ==========================================
-        const KALSHI_BASE_URL = 'https://api.kalshi.co/trade-api/v2';
-
-        async function loadKalshiMarkets() {
-            const kalshiSection = document.getElementById('kalshiMarkets');
-            
-            if (!kalshiSection) {
-                console.log('Kalshi section not found');
-                return;
-            }
-            
-            kalshiSection.innerHTML = '<div class="loader"></div>';
-            
-            try {
-                console.log('📊 Loading Kalshi markets...');
-                
-                const response = await fetch(`${KALSHI_BASE_URL}/markets?limit=12&status=open`, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`API error: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                console.log('✅ Markets loaded:', data);
-                
-                if (data.markets && data.markets.length > 0) {
-                    // Filter for politics and culture markets
-                    const filteredMarkets = data.markets.filter(market => {
-                        const category = market.category?.toLowerCase() || '';
-                        const title = market.title?.toLowerCase() || '';
-                        return category.includes('politics') || 
-                               category.includes('culture') || 
-                               title.includes('election') ||
-                               title.includes('political') ||
-                               title.includes('culture');
-                    }).slice(0, 6); // Show top 6 relevant markets
-                    
-                    displayKalshiMarkets(filteredMarkets);
-                } else {
-                    kalshiSection.innerHTML = '<p class="error-msg">No active markets</p>';
-                }
-                
-            } catch (error) {
-                console.error('❌ Kalshi error:', error);
-                kalshiSection.innerHTML = `
-                    <div class="error-msg">
-                        <p>Could not load markets</p>
-                        <p style="font-size:12px;margin-top:10px;">${error.message}</p>
-                    </div>
-                `;
-            }
-        }
-
-        function displayKalshiMarkets(markets) {
-            const kalshiSection = document.getElementById('kalshiMarkets');
-            
-            if (markets.length === 0) {
-                kalshiSection.innerHTML = '<p class="error-msg">No politics/culture markets found</p>';
-                return;
-            }
-            
-            const html = markets.map(market => {
-                const title = market.title || 'Unknown Market';
-                const category = market.category || 'General';
-                const volume = market.volume || 0;
-                const yesPrice = market.yes_ask || market.last_price || '—';
-                const noPrice = market.no_ask || (100 - (market.last_price || 0)) || '—';
-                const ticker = market.ticker || market.ticker_name || '';
-                
-                return `
-                    <div class="kalshi-market">
-                        <div class="market-title">${title}</div>
-                        <div class="market-info">
-                            <span class="market-category">${category.toUpperCase()}</span>
-                            <span class="market-volume">$${volume.toLocaleString()}</span>
-                        </div>
-                        <div class="market-prices">
-                            <div class="price-yes">
-                                <span class="price-label">YES</span>
-                                <span class="price-value">${yesPrice}¢</span>
-                            </div>
-                            <div class="price-no">
-                                <span class="price-label">NO</span>
-                                <span class="price-value">${noPrice}¢</span>
-                            </div>
-                        </div>
-                        ${ticker ? `
-                            <a href="https://kalshi.com/markets/${ticker}" 
-                               target="_blank" 
-                               rel="noopener" 
-                               class="market-link">
-                                TRADE ON KALSHI →
-                            </a>
-                        ` : ''}
-                    </div>
-                `;
-            }).join('');
-            
-            kalshiSection.innerHTML = html;
-        }
-
-        // ==========================================
         // PILL CHOICE SYSTEM
         // ==========================================
         let redCount = parseInt(localStorage.getItem('redPillCount')) || 0;
@@ -1014,7 +805,7 @@
                 redCount++;
                 localStorage.setItem('redPillCount', redCount);
                 document.getElementById('red-count').textContent = redCount;
-                alert('⚠️ YOU CHOSE THE RED PILL ⚠️\n\nYou cannot unlearn what you know.\nThe matrix has you...\nFollow the white rabbit.');
+                alert('⚠️ YOU CHOSE THE RED PILL  ⚠️\n\nYou cannot unlearn what you know.\nThe matrix has you...\nFollow the white rabbit.');
                 
                 // Add to chat
                 const username = usernameInput.value.trim() || 'User';
@@ -1048,16 +839,6 @@
 
         window.addEventListener('load', () => {
             console.log('🎮 Page loaded');
-            
-            if (document.getElementById('kalshiMarkets')) {
-                loadKalshiMarkets();
-                
-                // Auto-refresh markets every 2 minutes
-                setInterval(() => {
-                    console.log('🔄 Refreshing Kalshi markets...');
-                    loadKalshiMarkets();
-                }, 120000);
-            }
         });
     </script>
 </body>
