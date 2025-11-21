@@ -15,13 +15,7 @@
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.tiktok.com">
     <link rel="preconnect" href="https://pilled.net">
-    
-    <!-- Blockchain SDKs -->
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-    <script src="https://cdn.ethers.io/lib/ethers-5.7.umd.min.js"></script>
-    <script src="https://unpkg.com/@coinbase/wallet-sdk@3.7.1/dist/index.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -190,222 +184,9 @@
             font-size: clamp(0.5em, 1.5vw, 0.8em);
         }
 
-        .wallet-section {
-            text-align: center;
-            margin: 60px auto;
-            max-width: 800px;
-            background: rgba(0, 20, 0, 0.9);
-            border: 4px solid #0052FF;
-            padding: clamp(20px, 5vw, 40px);
-            box-shadow: 0 0 40px #0052FF;
-        }
-
-        .wallet-section h2 {
-            font-size: clamp(0.8em, 2.5vw, 1.2em);
-            margin-bottom: 10px;
-            color: #0052FF;
-            text-shadow: 0 0 10px #0052FF;
-        }
-
-        .wallet-subtitle {
-            font-size: clamp(0.4em, 1vw, 0.5em);
-            color: #0f0;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .coinbase-logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: #0052FF;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5em;
-        }
-
-        .wallet-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 20px 40px;
-            background: rgba(0, 82, 255, 0.2);
-            border: 3px solid #0052FF;
-            color: #0052FF;
-            text-decoration: none;
-            font-size: clamp(0.6em, 1.5vw, 0.8em);
-            transition: all 0.3s;
-            cursor: pointer;
-            touch-action: manipulation;
-            box-shadow: 0 0 20px #0052FF;
-            width: 100%;
-            max-width: 400px;
-            font-family: 'Press Start 2P', monospace;
-        }
-
-        .wallet-button:hover,
-        .wallet-button:active {
-            background: rgba(0, 82, 255, 0.4);
-            transform: scale(1.05);
-            box-shadow: 0 0 40px #0052FF;
-        }
-
-        .wallet-button.connected {
-            border-color: #14F195;
-            color: #14F195;
-            box-shadow: 0 0 20px #14F195;
-            background: rgba(20, 241, 149, 0.2);
-        }
-
-        .balance-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .balance-card {
-            background: rgba(0, 0, 0, 0.7);
-            border: 3px solid #0052FF;
-            padding: 25px;
-            text-align: left;
-            transition: all 0.3s;
-            box-shadow: 0 0 20px rgba(0, 82, 255, 0.3);
-        }
-
-        .balance-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(0, 82, 255, 0.6);
-        }
-
-        .balance-card.hidden {
-            display: none;
-        }
-
-        .chain-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #0052FF;
-        }
-
-        .chain-icon {
-            font-size: 1.5em;
-        }
-
-        .chain-name {
-            font-size: 0.7em;
-            color: #0052FF;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        .balance-amount {
-            font-size: 1.2em;
-            color: #fff;
-            margin-bottom: 8px;
-            text-shadow: 0 0 10px #0052FF;
-        }
-
-        .balance-usd {
-            font-size: 0.6em;
-            color: #14F195;
-        }
-
-        .balance-loading {
-            font-size: 0.6em;
-            color: #888;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .wallet-info-section {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid #0f0;
-        }
-
-        .wallet-address-display {
-            font-size: 0.5em;
-            color: #0f0;
-            word-break: break-all;
-            margin-bottom: 15px;
-        }
-
-        .wallet-address-display p {
-            margin: 5px 0;
-        }
-
-        .total-balance {
-            font-size: 0.8em;
-            color: #fff;
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(0, 82, 255, 0.2);
-            border: 2px solid #0052FF;
-        }
-
-        .total-balance-label {
-            font-size: 0.6em;
-            color: #0052FF;
-            margin-bottom: 10px;
-        }
-
-        .total-balance-amount {
-            font-size: 1.5em;
-            color: #14F195;
-            text-shadow: 0 0 15px #14F195;
-        }
-
-        .disconnect-button {
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: rgba(255, 0, 0, 0.2);
-            border: 2px solid #ff0000;
-            color: #ff0000;
-            font-size: 0.6em;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'Press Start 2P', monospace;
-        }
-
-        .disconnect-button:hover,
-        .disconnect-button:active {
-            background: rgba(255, 0, 0, 0.4);
-            box-shadow: 0 0 20px #ff0000;
-            transform: scale(1.05);
-        }
-
-        .refresh-button {
-            margin-top: 15px;
-            padding: 10px 25px;
-            background: rgba(0, 82, 255, 0.2);
-            border: 2px solid #0052FF;
-            color: #0052FF;
-            font-size: 0.5em;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'Press Start 2P', monospace;
-        }
-
-        .refresh-button:hover {
-            background: rgba(0, 82, 255, 0.4);
-            box-shadow: 0 0 15px #0052FF;
-        }
-
         /* KALSHI SECTION */
         .kalshi-section {
-            margin: 60px auto;
+            margin: 40px auto;
             max-width: 1000px;
             background: rgba(0, 20, 0, 0.9);
             border: 4px solid #0f0;
@@ -513,7 +294,7 @@
         }
 
         .stream-container {
-            margin: 60px auto;
+            margin: 40px auto;
             max-width: 1000px;
             background: rgba(0, 20, 0, 0.9);
             border: 4px solid #0f0;
@@ -554,78 +335,159 @@
             border: none;
         }
 
-        .tiktok-container {
-            margin: 60px auto;
-            max-width: 780px;
+        /* CHAT SECTION */
+        .chat-section {
+            margin: 40px auto;
+            max-width: 1000px;
             background: rgba(0, 20, 0, 0.9);
             border: 4px solid #0f0;
-            padding: clamp(20px, 5vw, 30px);
+            padding: clamp(20px, 4vw, 30px);
             box-shadow: 0 0 40px #0f0;
-            text-align: center;
-            overflow: hidden;
         }
 
-        .tiktok-container h2 {
+        .chat-section h2 {
             font-size: clamp(0.8em, 2.5vw, 1.2em);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             color: #0f0;
             text-shadow: 0 0 10px #0f0;
+            text-align: center;
         }
 
-        .tiktok-embed-desktop {
-            display: block;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .tiktok-embed {
-            max-width: 100% !important;
-            width: 100% !important;
-            margin: 0 auto !important;
-        }
-
-        .tiktok-button-mobile {
-            display: none;
-        }
-
-        .tiktok-cta {
-            display: block;
-            background: rgba(0, 20, 0, 0.95);
+        .chat-container {
+            background: rgba(0, 0, 0, 0.8);
             border: 3px solid #0f0;
-            padding: 30px;
-            color: #0f0;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 0 20px #0f0;
-            cursor: pointer;
+            height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            scrollbar-width: thin;
+            scrollbar-color: #0f0 #000;
         }
 
-        .tiktok-cta:active {
-            transform: scale(0.95);
-            box-shadow: 0 0 40px #0f0;
-            background: rgba(0, 255, 0, 0.2);
+        .chat-container::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .tiktok-icon {
-            font-size: 3em;
+        .chat-container::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        .chat-container::-webkit-scrollbar-thumb {
+            background-color: #0f0;
+            border-radius: 4px;
+        }
+
+        .message {
+            padding: 10px;
             margin-bottom: 15px;
+            border-radius: 4px;
+            max-width: 80%;
+            word-wrap: break-word;
+            animation: fadeIn 0.3s;
+            position: relative;
         }
 
-        .tiktok-username {
-            font-size: 1em;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px #0f0;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .tiktok-action {
+        .message.user {
+            background: rgba(0, 50, 0, 0.7);
+            border-left: 4px solid #0f0;
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .message.other {
+            background: rgba(0, 0, 0, 0.7);
+            border-right: 4px solid #0088ff;
+            align-self: flex-start;
+        }
+
+        .message.system {
+            background: rgba(50, 0, 0, 0.7);
+            border-left: 4px solid #ff0000;
+            align-self: center;
+            text-align: center;
+            font-style: italic;
+            max-width: 90%;
+        }
+
+        .message-username {
             font-size: 0.6em;
-            opacity: 0.8;
-            animation: blink 1.5s infinite;
+            color: #888;
+            margin-bottom: 5px;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 0.3; }
+        .message-text {
+            font-size: 0.7em;
+            line-height: 1.5;
+        }
+
+        .message-time {
+            font-size: 0.5em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .chat-input-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .username-input {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #0f0;
+            color: #0f0;
+            padding: 10px 15px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6em;
+            min-width: 120px;
+            flex-shrink: 0;
+        }
+
+        .username-input:focus {
+            outline: none;
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        .message-input {
+            flex-grow: 1;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #0f0;
+            color: #0f0;
+            padding: 10px 15px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6em;
+        }
+
+        .message-input:focus {
+            outline: none;
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        .send-button {
+            background: rgba(0, 20, 0, 0.8);
+            border: 2px solid #0f0;
+            color: #0f0;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6em;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .send-button:hover {
+            background: rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 15px #0f0;
+        }
+
+        .send-button:active {
+            transform: scale(0.95);
         }
 
         .link-box {
@@ -633,23 +495,44 @@
             margin: 60px 0;
         }
 
-        .cta-button {
+        .captains-log-button {
             display: inline-block;
             padding: clamp(15px, 3vw, 20px) clamp(30px, 6vw, 40px);
             background: rgba(0, 20, 0, 0.8);
-            border: 3px solid #0f0;
-            color: #0f0;
+            border: 3px solid #8B4513;
+            color: #FFD700;
             text-decoration: none;
             font-size: clamp(0.5em, 1.5vw, 0.8em);
             transition: all 0.3s;
-            box-shadow: 0 0 20px #0f0;
+            box-shadow: 0 0 20px #FFD700;
             touch-action: manipulation;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
         }
 
-        .cta-button:hover, .cta-button:active {
-            background: rgba(0, 255, 0, 0.2);
+        .captains-log-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .captains-log-button:hover:before {
+            left: 100%;
+        }
+
+        .captains-log-button:hover, .captains-log-button:active {
+            background: rgba(139, 69, 19, 0.3);
             transform: scale(1.05);
-            box-shadow: 0 0 40px #0f0;
+            box-shadow: 0 0 40px #FFD700, 0 0 60px #8B4513;
+            border-color: #FFD700;
         }
 
         .scanlines {
@@ -671,8 +554,8 @@
 
         .section-divider {
             text-align: center;
-            margin: 80px 0 40px 0;
-            font-size: clamp(0.8em, 2.5vw, 1.5em);
+            margin: 60px 0 30px 0;
+            font-size: clamp(0.8em, 2.5vw, 1.2em);
             color: #0f0;
             text-shadow: 0 0 20px #0f0;
         }
@@ -733,20 +616,20 @@
                 padding: 10px;
             }
 
-            .tiktok-embed-desktop {
-                display: none !important;
-            }
-
-            .tiktok-button-mobile {
-                display: block;
-            }
-
             .kalshi-markets {
                 grid-template-columns: 1fr;
             }
 
             .stream-frame iframe {
                 height: 50vh;
+            }
+
+            .chat-input-container {
+                flex-direction: column;
+            }
+
+            .username-input {
+                min-width: auto;
             }
         }
     </style>
@@ -789,83 +672,6 @@
         </div>
 
         <div class="section-divider">
-            &gt;&gt;&gt; COINBASE WALLET CONNECTION &lt;&lt;&lt;
-        </div>
-
-        <div class="wallet-section">
-            <div class="coinbase-logo">🟦</div>
-            <h2>CONNECT COINBASE WALLET</h2>
-            <p class="wallet-subtitle">
-                ACCESS YOUR SOLANA & ETHEREUM BALANCES<br>
-                MULTI-CHAIN SUPPORT • SECURE CONNECTION
-            </p>
-            
-            <button id="coinbaseButton" class="wallet-button" onclick="connectCoinbase()">
-                <span>🔗</span>
-                <span>CONNECT WALLET</span>
-            </button>
-
-            <div id="walletInfo" style="display: none;">
-                <div class="wallet-info-section">
-                    <div class="wallet-address-display">
-                        <p><strong>ETHEREUM ADDRESS:</strong></p>
-                        <p id="ethAddress">Not connected</p>
-                        <p style="margin-top: 15px;"><strong>SOLANA ADDRESS:</strong></p>
-                        <p id="solAddress">Not connected</p>
-                    </div>
-
-                    <div class="balance-grid">
-                        <div id="ethCard" class="balance-card hidden">
-                            <div class="chain-header">
-                                <div class="chain-icon">💎</div>
-                                <div class="chain-name">ETHEREUM</div>
-                            </div>
-                            <div class="balance-amount" id="ethBalance">
-                                <span class="balance-loading">Loading...</span>
-                            </div>
-                            <div class="balance-usd" id="ethUsd">$0.00 USD</div>
-                        </div>
-
-                        <div id="solanaCard" class="balance-card hidden">
-                            <div class="chain-header">
-                                <div class="chain-icon">⚡</div>
-                                <div class="chain-name">SOLANA</div>
-                            </div>
-                            <div class="balance-amount" id="solBalance">
-                                <span class="balance-loading">Loading...</span>
-                            </div>
-                            <div class="balance-usd" id="solUsd">$0.00 USD</div>
-                        </div>
-                    </div>
-
-                    <div class="total-balance">
-                        <div class="total-balance-label">TOTAL PORTFOLIO VALUE</div>
-                        <div class="total-balance-amount" id="totalBalance">$0.00</div>
-                    </div>
-
-                    <button class="refresh-button" onclick="refreshBalances()">
-                        🔄 REFRESH BALANCES
-                    </button>
-
-                    <button class="disconnect-button" onclick="disconnectWallet()">
-                        ❌ DISCONNECT WALLET
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-divider">
-            &gt;&gt;&gt; KALSHI PREDICTION MARKETS &lt;&lt;&lt;
-        </div>
-
-        <div class="kalshi-section">
-            <h2>📊 LIVE PREDICTION MARKETS</h2>
-            <div id="kalshiMarkets" class="kalshi-markets">
-                <div class="loader"></div>
-            </div>
-        </div>
-
-        <div class="section-divider">
             &gt;&gt;&gt; LIVE TRANSMISSION &lt;&lt;&lt;
         </div>
 
@@ -884,50 +690,58 @@
         </div>
 
         <div class="section-divider">
-            &gt;&gt;&gt; SOCIAL TRANSMISSION &lt;&lt;&lt;
+            &gt;&gt;&gt; LIVE CHAT &lt;&lt;&lt;
         </div>
 
-        <div class="tiktok-container">
-            <h2>FOLLOW THE RABBIT</h2>
-            
-            <div class="tiktok-embed-desktop">
-                <blockquote 
-                    class="tiktok-embed" 
-                    cite="https://www.tiktok.com/@the.culture.war" 
-                    data-unique-id="the.culture.war" 
-                    data-embed-type="creator" 
-                    style="max-width: 100%; margin: 0 auto;">
-                    <section> 
-                        <a target="_blank" href="https://www.tiktok.com/@the.culture.war?refer=creator_embed">
-                            @the.culture.war
-                        </a> 
-                    </section> 
-                </blockquote>
+        <div class="chat-section">
+            <h2>💬 LIVE DISCUSSION</h2>
+            <div id="chatContainer" class="chat-container">
+                <div class="message system">
+                    <div class="message-text">Welcome to the Culture War chat. Be respectful.</div>
+                    <div class="message-time">System Message</div>
+                </div>
+                <div class="message other">
+                    <div class="message-username">MatrixObserver</div>
+                    <div class="message-text">Anyone else seeing this stream? The simulation is glitching hard today.</div>
+                    <div class="message-time">Just now</div>
+                </div>
+                <div class="message user">
+                    <div class="message-username">RedPilledUser</div>
+                    <div class="message-text">I took the red pill years ago. Wake up sheeple!</div>
+                    <div class="message-time">2 min ago</div>
+                </div>
             </div>
+            <div class="chat-input-container">
+                <input type="text" id="usernameInput" class="username-input" placeholder="Username" maxlength="15" value="User">
+                <input type="text" id="messageInput" class="message-input" placeholder="Type your message..." maxlength="200">
+                <button id="sendButton" class="send-button">SEND</button>
+            </div>
+        </div>
 
-            <div class="tiktok-button-mobile">
-                <a href="https://www.tiktok.com/@the.culture.war" target="_blank" rel="noopener" class="tiktok-cta">
-                    <div class="tiktok-icon">📱</div>
-                    <div class="tiktok-username">@the.culture.war</div>
-                    <div class="tiktok-action">TAP TO FOLLOW &gt;&gt;&gt;</div>
-                </a>
+        <div class="section-divider">
+            &gt;&gt;&gt; PREDICTION MARKETS &lt;&lt;&lt;
+        </div>
+
+        <div class="kalshi-section">
+            <h2>📊 KALSHI PREDICTION MARKETS</h2>
+            <div id="kalshiMarkets" class="kalshi-markets">
+                <div class="loader"></div>
             </div>
         </div>
 
         <div class="link-box">
-            <a href="https://thecaptainslog.xyz" class="cta-button" target="_blank" rel="noopener">
-                &gt; ENTER THE CAPTAIN'S LOG_
+            <a href="https://thecaptainslog.xyz" class="captains-log-button" target="_blank" rel="noopener">
+                ⚓ ENTER THE CAPTAIN'S LOG_
             </a>
         </div>
 
         <footer>
-            <p>&gt; THE CULTURE WAR - SOLANA BLOCKCHAIN</p>
+            <p>&gt; THE CULTURE WAR - DIGITAL BATTLEFIELD</p>
             <p>&gt; POWERED BY CHAOS AND OBSERVATIONS</p>
             <p>&gt; MADE BY JUST SOME GUY™</p>
         </footer>
     </div>
 
-    <script async src="https://www.tiktok.com/embed.js"></script>
     <script>
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
@@ -970,198 +784,115 @@
         });
 
         // ==========================================
-        // COINBASE WALLET INTEGRATION
+        // CHAT FUNCTIONALITY
         // ==========================================
-        
-        let coinbaseWallet = null;
-        let ethereumProvider = null;
-        let ethAddress = null;
-        let solAddress = null;
-        let ethBalance = 0;
-        let solBalance = 0;
+        const chatContainer = document.getElementById('chatContainer');
+        const usernameInput = document.getElementById('usernameInput');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
 
-        let prices = {
-            ethereum: 0,
-            solana: 0
-        };
+        // Sample user names for simulated responses
+        const sampleUsers = [
+            'RedPilledUser', 'BluePillTaker', 'MatrixObserver', 
+            'GlitchInSystem', 'NeoWannabe', 'MorpheusFan', 
+            'SimulationTest', 'RealityChecker', 'TruthSeeker'
+        ];
 
-        function initCoinbaseWallet() {
-            const CoinbaseWalletSDK = window.CoinbaseWalletSDK;
-            coinbaseWallet = new CoinbaseWalletSDK({
-                appName: 'The Culture War',
-                appLogoUrl: 'https://theculturewar.github.io/logo.png',
-                darkMode: true,
-                overrideIsMetaMask: false
-            });
+        // Sample messages for simulated responses
+        const sampleMessages = [
+            "The red pill changed everything for me",
+            "Has anyone noticed the patterns in the simulation?",
+            "This stream is revealing some hard truths",
+            "They don't want you to know what's really happening",
+            "I chose blue and I'm happy with my decision",
+            "The system is designed to keep us asleep",
+            "Wake up people! The signs are everywhere",
+            "What if we're all just characters in someone else's story?",
+            "The culture war is a distraction from the real issues"
+        ];
+
+        // Function to add a message to the chat
+        function addMessage(username, text, type = 'user') {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
             
-            ethereumProvider = coinbaseWallet.makeWeb3Provider(
-                'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
-                1
-            );
-        }
-
-        async function getCryptoPrices() {
-            try {
-                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum,solana&vs_currencies=usd');
-                const data = await response.json();
-                prices.ethereum = data.ethereum.usd;
-                prices.solana = data.solana.usd;
-                console.log('📊 Prices:', prices);
-            } catch (error) {
-                console.error('Price error:', error);
-                prices.ethereum = 2500;
-                prices.solana = 100;
-            }
-        }
-
-        async function connectCoinbase() {
-            try {
-                if (!coinbaseWallet) {
-                    initCoinbaseWallet();
-                }
-
-                document.getElementById('coinbaseButton').innerHTML = '<span>⏳</span><span>CONNECTING...</span>';
-
-                await getCryptoPrices();
-
-                const accounts = await ethereumProvider.request({
-                    method: 'eth_requestAccounts'
-                });
-                
-                ethAddress = accounts[0];
-                
-                console.log('✅ Connected:', ethAddress);
-
-                const userSolAddress = prompt(
-                    '⚡ Enter your Solana address from Coinbase Wallet:\n\n' +
-                    '(Find in Coinbase Wallet app under Solana)'
-                );
-
-                if (userSolAddress && userSolAddress.length > 30) {
-                    solAddress = userSolAddress.trim();
-                }
-
-                updateWalletUI();
-                await refreshBalances();
-                
-                if (navigator.vibrate) {
-                    navigator.vibrate([50, 100, 50]);
-                }
-                
-            } catch (error) {
-                console.error('Connection error:', error);
-                alert('⚠️ CONNECTION FAILED\n\n' + error.message);
-                document.getElementById('coinbaseButton').innerHTML = '<span>🔗</span><span>CONNECT WALLET</span>';
-            }
-        }
-
-        function updateWalletUI() {
-            document.getElementById('coinbaseButton').classList.add('connected');
-            document.getElementById('coinbaseButton').innerHTML = '<span>✅</span><span>CONNECTED</span>';
+            const usernameDiv = document.createElement('div');
+            usernameDiv.className = 'message-username';
+            usernameDiv.textContent = username;
             
-            document.getElementById('ethAddress').textContent = ethAddress;
-            document.getElementById('solAddress').textContent = solAddress || 'Not provided';
+            const textDiv = document.createElement('div');
+            textDiv.className = 'message-text';
+            textDiv.textContent = text;
             
-            document.getElementById('walletInfo').style.display = 'block';
-            document.getElementById('ethCard').classList.remove('hidden');
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.textContent = 'Just now';
             
-            if (solAddress) {
-                document.getElementById('solanaCard').classList.remove('hidden');
+            messageDiv.appendChild(usernameDiv);
+            messageDiv.appendChild(textDiv);
+            messageDiv.appendChild(timeDiv);
+            
+            chatContainer.appendChild(messageDiv);
+            
+            // Scroll to bottom to show new message
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            // If this is a user message, simulate responses
+            if (type === 'user') {
+                simulateResponses();
             }
         }
 
-        async function getEthereumBalance() {
-            try {
-                document.getElementById('ethBalance').innerHTML = '<span class="balance-loading">Loading...</span>';
+        // Function to simulate other users responding
+        function simulateResponses() {
+            // Random chance of getting a response (60%)
+            if (Math.random() < 0.6) {
+                // Number of responses (1-2)
+                const responseCount = Math.floor(Math.random() * 2) + 1;
                 
-                const balanceHex = await ethereumProvider.request({
-                    method: 'eth_getBalance',
-                    params: [ethAddress, 'latest']
-                });
-                
-                const balanceWei = parseInt(balanceHex, 16);
-                ethBalance = balanceWei / 1e18;
-                
-                const ethUsdValue = (ethBalance * prices.ethereum).toFixed(2);
-                
-                document.getElementById('ethBalance').textContent = ethBalance.toFixed(6) + ' ETH';
-                document.getElementById('ethUsd').textContent = '$' + ethUsdValue + ' USD';
-                
-                return parseFloat(ethUsdValue);
-                
-            } catch (error) {
-                console.error('ETH error:', error);
-                document.getElementById('ethBalance').textContent = 'Error';
-                return 0;
-            }
-        }
-
-        async function getSolanaBalance() {
-            if (!solAddress) return 0;
-
-            try {
-                document.getElementById('solBalance').innerHTML = '<span class="balance-loading">Loading...</span>';
-                
-                const connection = new solanaWeb3.Connection(
-                    solanaWeb3.clusterApiUrl('mainnet-beta'),
-                    'confirmed'
-                );
-                
-                const publicKey = new solanaWeb3.PublicKey(solAddress);
-                const balanceLamports = await connection.getBalance(publicKey);
-                
-                solBalance = balanceLamports / solanaWeb3.LAMPORTS_PER_SOL;
-                
-                const solUsdValue = (solBalance * prices.solana).toFixed(2);
-                
-                document.getElementById('solBalance').textContent = solBalance.toFixed(6) + ' SOL';
-                document.getElementById('solUsd').textContent = '$' + solUsdValue + ' USD';
-                
-                return parseFloat(solUsdValue);
-                
-            } catch (error) {
-                console.error('SOL error:', error);
-                document.getElementById('solBalance').textContent = 'Error';
-                return 0;
-            }
-        }
-
-        async function refreshBalances() {
-            try {
-                await getCryptoPrices();
-                
-                const ethUsd = await getEthereumBalance();
-                const solUsd = await getSolanaBalance();
-                
-                const total = ethUsd + solUsd;
-                document.getElementById('totalBalance').textContent = '$' + total.toFixed(2);
-                
-            } catch (error) {
-                console.error('Refresh error:', error);
-            }
-        }
-
-        function disconnectWallet() {
-            if (confirm('Disconnect Coinbase Wallet?')) {
-                ethAddress = null;
-                solAddress = null;
-                
-                document.getElementById('coinbaseButton').classList.remove('connected');
-                document.getElementById('coinbaseButton').innerHTML = '<span>🔗</span><span>CONNECT WALLET</span>';
-                document.getElementById('walletInfo').style.display = 'none';
-                document.getElementById('ethCard').classList.add('hidden');
-                document.getElementById('solanaCard').classList.add('hidden');
-                
-                if (ethereumProvider && ethereumProvider.disconnect) {
-                    ethereumProvider.disconnect();
+                for (let i = 0; i < responseCount; i++) {
+                    // Random delay between responses
+                    const delay = 1000 + Math.random() * 4000;
+                    
+                    setTimeout(() => {
+                        const randomUser = sampleUsers[Math.floor(Math.random() * sampleUsers.length)];
+                        const randomMessage = sampleMessages[Math.floor(Math.random() * sampleMessages.length)];
+                        
+                        addMessage(randomUser, randomMessage, 'other');
+                    }, delay);
                 }
             }
         }
+
+        // Function to handle sending a message
+        function sendMessage() {
+            const username = usernameInput.value.trim() || 'User';
+            const message = messageInput.value.trim();
+            
+            if (message) {
+                addMessage(username, message, 'user');
+                messageInput.value = '';
+                
+                // Simulate occasional system messages
+                if (Math.random() < 0.1) {
+                    setTimeout(() => {
+                        addMessage('System', 'Remember to be respectful in discussions.', 'system');
+                    }, 2000);
+                }
+            }
+        }
+
+        // Event listeners for chat
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
 
         // ==========================================
-        // KALSHI MARKETS - SIMPLE PUBLIC API (NO AUTH)
+        // KALSHI MARKETS - PUBLIC API
         // ==========================================
-        
         const KALSHI_BASE_URL = 'https://api.kalshi.co/trade-api/v2';
 
         async function loadKalshiMarkets() {
@@ -1177,7 +908,7 @@
             try {
                 console.log('📊 Loading Kalshi markets...');
                 
-                const response = await fetch(`${KALSHI_BASE_URL}/markets?limit=10&status=open`, {
+                const response = await fetch(`${KALSHI_BASE_URL}/markets?limit=12&status=open`, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -1191,7 +922,18 @@
                 console.log('✅ Markets loaded:', data);
                 
                 if (data.markets && data.markets.length > 0) {
-                    displayKalshiMarkets(data.markets);
+                    // Filter for politics and culture markets
+                    const filteredMarkets = data.markets.filter(market => {
+                        const category = market.category?.toLowerCase() || '';
+                        const title = market.title?.toLowerCase() || '';
+                        return category.includes('politics') || 
+                               category.includes('culture') || 
+                               title.includes('election') ||
+                               title.includes('political') ||
+                               title.includes('culture');
+                    }).slice(0, 6); // Show top 6 relevant markets
+                    
+                    displayKalshiMarkets(filteredMarkets);
                 } else {
                     kalshiSection.innerHTML = '<p class="error-msg">No active markets</p>';
                 }
@@ -1210,20 +952,25 @@
         function displayKalshiMarkets(markets) {
             const kalshiSection = document.getElementById('kalshiMarkets');
             
-            const html = markets.slice(0, 6).map(market => {
+            if (markets.length === 0) {
+                kalshiSection.innerHTML = '<p class="error-msg">No politics/culture markets found</p>';
+                return;
+            }
+            
+            const html = markets.map(market => {
                 const title = market.title || 'Unknown Market';
                 const category = market.category || 'General';
                 const volume = market.volume || 0;
                 const yesPrice = market.yes_ask || market.last_price || '—';
                 const noPrice = market.no_ask || (100 - (market.last_price || 0)) || '—';
-                const ticker = market.ticker_name || '';
+                const ticker = market.ticker || market.ticker_name || '';
                 
                 return `
                     <div class="kalshi-market">
                         <div class="market-title">${title}</div>
                         <div class="market-info">
-                            <span class="market-category">${category}</span>
-                            <span class="market-volume">Vol: $${volume.toLocaleString()}</span>
+                            <span class="market-category">${category.toUpperCase()}</span>
+                            <span class="market-volume">$${volume.toLocaleString()}</span>
                         </div>
                         <div class="market-prices">
                             <div class="price-yes">
@@ -1240,7 +987,7 @@
                                target="_blank" 
                                rel="noopener" 
                                class="market-link">
-                                View on Kalshi →
+                                TRADE ON KALSHI →
                             </a>
                         ` : ''}
                     </div>
@@ -1253,7 +1000,6 @@
         // ==========================================
         // PILL CHOICE SYSTEM
         // ==========================================
-        
         let redCount = parseInt(localStorage.getItem('redPillCount')) || 0;
         let blueCount = parseInt(localStorage.getItem('bluePillCount')) || 0;
         document.getElementById('red-count').textContent = redCount;
@@ -1269,6 +1015,11 @@
                 localStorage.setItem('redPillCount', redCount);
                 document.getElementById('red-count').textContent = redCount;
                 alert('⚠️ YOU CHOSE THE RED PILL ⚠️\n\nYou cannot unlearn what you know.\nThe matrix has you...\nFollow the white rabbit.');
+                
+                // Add to chat
+                const username = usernameInput.value.trim() || 'User';
+                addMessage(username, 'I just took the RED PILL! There\'s no going back now!', 'user');
+                
                 document.body.style.background = '#300';
                 setTimeout(() => { document.body.style.background = '#000'; }, 200);
             } else {
@@ -1276,6 +1027,11 @@
                 localStorage.setItem('bluePillCount', blueCount);
                 document.getElementById('blue-count').textContent = blueCount;
                 alert('😴 YOU CHOSE THE BLUE PILL 😴\n\nThe story ends here.\nYou wake up in your bed.\nYou believe whatever you want to believe.');
+                
+                // Add to chat
+                const username = usernameInput.value.trim() || 'User';
+                addMessage(username, 'I took the BLUE PILL. Ignorance is bliss!', 'user');
+                
                 document.body.style.background = '#003';
                 setTimeout(() => { document.body.style.background = '#000'; }, 200);
             }
@@ -1292,7 +1048,6 @@
 
         window.addEventListener('load', () => {
             console.log('🎮 Page loaded');
-            getCryptoPrices();
             
             if (document.getElementById('kalshiMarkets')) {
                 loadKalshiMarkets();
